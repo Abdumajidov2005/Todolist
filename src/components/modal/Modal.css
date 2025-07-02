@@ -1,0 +1,92 @@
+.modal-info .container {
+  position: relative;
+  padding: 40px 40px;
+  background-color: #bbdefb;
+  width: 600px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.modal-info h2{
+    font-size: 30px;
+    color: #0d47a1;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.modal-info .information {
+  display: flex;
+  border-radius: 5px;
+}
+
+.x-mark {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #0d47a1;
+  color: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.information {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.information input {
+  width: 100%;
+  padding: 13px 10px;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #0d47a1;
+  background-color: #e3f2fd;
+  border-radius: 10px;
+  border: none;
+}
+
+.information input::placeholder {
+  color: #64b5f6;
+}
+
+.cheking-plan {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cheking-plan label {
+  font-size: 19px;
+  font-weight: 500;
+  color: #0d47a1;
+}
+
+.cheking-plan input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.information button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 57px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    cursor: pointer;
+    background-color: #2196f3;
+    border: none;
+    color: #e3f2fd;
+    border-radius: 10px;
+}

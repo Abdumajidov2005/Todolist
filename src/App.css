@@ -1,0 +1,137 @@
+:root{
+    --blue-main-write: #0d47a1;
+    --blue-button-bacg: #2196f3;
+    --blue-second-write: #1976d2;
+    --white-write: #e3f2fd;
+    --modal: #bbdefb;
+}
+
+body{
+    background-color: var(--white-write);
+}
+
+nav .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 20px;
+}
+
+nav{
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    border-bottom: 1px solid var(--blue-main-write);
+    z-index: 9;
+    background-color: var(--white-write);
+}
+
+nav h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--blue-main-write);
+    font-family: "Pacifico", cursive;
+    cursor: pointer;
+}
+
+nav button{
+    background-color: var(--blue-button-bacg);
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    font-size: 20px;
+    color: var(--white-write);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+nav button svg{
+    font-size: 26px;
+}
+
+
+.hero .container{
+    margin-top: 40px;
+}
+
+.box{
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid var(--blue-main-write);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box-info{
+    width: 84%;
+}
+
+.box-info h1{
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--blue-main-write);
+    margin-bottom: 10px;
+}
+
+.box-info p{
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue-second-write);
+}
+
+.box-info h4{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-second-write);
+}
+
+.box-icons{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.box-icons input{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid var(--blue-main-write);
+}
+
+.box-icons p{
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--blue-main-write);
+}
+
+.modal-oyna{
+    background-color: #bbdefb43;
+    backdrop-filter: blur(3px);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    transform: scale(0);
+    transition: all .6s ease;
+    opacity: 0;
+}
+
+.modal-oyna.active{
+    transform: scale(1);
+    opacity: 1;
+    transition: all .3s ease;
+}
