@@ -13,13 +13,19 @@ function Modal({
   isDone,
   setIzoh,
   izoh,
+  edit,
+  setEdit
 }) {
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addData();
+          if (edit) {
+
+          } else {
+            addData();
+          }
           setModal(false);
         }}
         className="modal-info"
@@ -28,7 +34,7 @@ function Modal({
           <p
             className="x-mark"
             onClick={() => {
-              setModal(false);
+              setModal(false), setEdit(null)
             }}
           >
             <FaXmark />
@@ -66,7 +72,9 @@ function Modal({
                 setModal(false);
               }}
             >
-              Submit <IoSendSharp />
+              {
+                edit == null ? "submit": "update"
+              } <IoSendSharp />
             </button>
           </div>
         </div>

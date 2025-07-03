@@ -8,8 +8,9 @@ import { getData } from "./services/app";
 import { baseUrl } from "./config";
 
 function App() {
-  const [modal, setModal] = useState(false);
   const [data, setData] = useState([]);
+  const [edit, setEdit] = useState(null);
+  const [modal, setModal] = useState(false);
   useEffect(() => {
     getData()?.then((data) => {
       setData(data);
@@ -78,6 +79,8 @@ function App() {
           setIzoh={setIzoh}
           setIsDone={setIsDone}
           isDone={isDone}
+          edit={edit}
+          setEdit={setEdit}
         />
       </div>
       <nav>
@@ -109,7 +112,12 @@ function App() {
                 <div className="box-icons">
                   <input checked={item?.bajarildi} type="checkbox" readOnly />
                   <p>
-                    <FaPencil />
+                    <FaPencil onClick={()=>{
+                       setModal(true)
+                       setEdit(item.id)
+                       console.log(item.id);
+                       
+                    }}/>
                   </p>
                   <p>
                     <BsFillTrash3Fill onClick={()=>{
