@@ -135,3 +135,11 @@ nav button svg{
     opacity: 1;
     transition: all .3s ease;
 }
+
+.gif-load{
+    color: #0d47a1;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 100px;
+}

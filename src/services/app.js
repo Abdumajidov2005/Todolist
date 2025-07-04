@@ -9,6 +9,7 @@ export const getData = () => {
  return fetch(`${baseUrl}/rejalar/`, requestOptions)
     .then((response) => response.json())
     .then((result) => ()=>{
+      
         return result;
     })
     .catch((error) => ()=>{
@@ -16,3 +17,4 @@ export const getData = () => {
         return [];
     });
 };
+ 

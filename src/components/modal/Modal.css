@@ -89,4 +89,5 @@
     border: none;
     color: #e3f2fd;
     border-radius: 10px;
+    text-transform: capitalize;
 }

@@ -1,32 +1,116 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Modal.css";
 import { FaXmark } from "react-icons/fa6";
 import { IoSendSharp } from "react-icons/io5";
-import { Form } from "react-router-dom";
+import { baseUrl } from "../../config";
+import { getData } from "../../services/app";
 
-function Modal({
-  setModal,
-  addData,
-  setIsDone,
-  setSarlavha,
-  sarlavha,
-  isDone,
-  setIzoh,
-  izoh,
-  edit,
-  setEdit
-}) {
+function Modal({ setModal, setData, editId, setEditId }) {
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
+  const [isDone, setIsDone] = useState(false);
+
+  const createPlan = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+      sarlavha: title,
+      izoh: comment,
+      bajarildi: isDone,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${baseUrl}/rejalar/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        getData()?.then(setData);
+        setTitle("");
+        setComment("");
+        setIsDone(false);
+        setModal(false);
+        setEditId(null);
+        return result;
+      })
+      .catch((error) => {
+        console.error(error);
+        return [];
+      });
+  };
+
+  const getEditPlan = () => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${baseUrl}/rejalar/${editId}/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setTitle(result?.sarlavha);
+        setComment(result?.izoh);
+        setIsDone(result?.bajarildi);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const getUpdateData = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      sarlavha: title,
+      izoh: comment,
+      bajarildi: isDone,
+    });
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${baseUrl}/rejalar/${editId}/`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        getData()?.then(setData);
+        setEditId(null);
+        setTitle("");
+        setComment("");
+        setIsDone(false);
+        setModal(false);
+        return result;
+      })
+      .catch((error) => {
+        console.error(error);
+        return [];
+      });
+  };
+
+  useEffect(() => {
+   if(editId !== null){
+     getEditPlan();
+   }
+  }, [editId]);
+
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (edit) {
-
+          if (editId) {
+            getUpdateData();
           } else {
-            addData();
+            createPlan();
           }
-          setModal(false);
         }}
         className="modal-info"
       >
@@ -34,7 +118,8 @@ function Modal({
           <p
             className="x-mark"
             onClick={() => {
-              setModal(false), setEdit(null)
+              setModal(false);
+              setEditId(null);
             }}
           >
             <FaXmark />
@@ -42,39 +127,35 @@ function Modal({
           <h2>Create Plan</h2>
           <div className="information">
             <input
-              value={sarlavha}
-              onChange={(e) => {
-                setSarlavha(e.target.value);
-              }}
               type="text"
               placeholder="Sarlavha"
-            />
-            <input
-              value={izoh}
+              value={title}
               onChange={(e) => {
-                setIzoh(e.target.value);
+                setTitle(e.target.value);
               }}
+            />
+
+            <input
               type="text"
               placeholder="Izoh"
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
             />
+
             <div className="cheking-plan">
               <label htmlFor="">Bajarildimi:</label>
               <input
+                type="checkbox"
                 checked={isDone}
                 onChange={() => {
                   setIsDone(!isDone);
                 }}
-                type="checkbox"
               />
             </div>
-            <button
-              onClick={() => {
-                setModal(false);
-              }}
-            >
-              {
-                edit == null ? "submit": "update"
-              } <IoSendSharp />
+            <button>
+              {editId == null ? "submit" : "update"} <IoSendSharp />
             </button>
           </div>
         </div>
