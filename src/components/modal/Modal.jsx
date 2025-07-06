@@ -69,6 +69,7 @@ function Modal({ setModal, setData, editId, setEditId }) {
   };
 
   const getUpdateData = () => {
+    setEditUpdate(true)
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -94,6 +95,7 @@ function Modal({ setModal, setData, editId, setEditId }) {
         setComment("");
         setIsDone(false);
         setModal(false);
+        setEditUpdate(false)
         return result;
       })
       .catch((error) => {
@@ -110,10 +112,11 @@ function Modal({ setModal, setData, editId, setEditId }) {
 
   const [loadInput, setLoadInput] = useState(false);
   const [loadingInput, setLoadingInput] = useState(false);
+  const [editUpdata, setEditUpdate] = useState(false);  
 
   return (
     <>
-      {loadingInput ? (
+      {loadingInput || editUpdata ? (
         <div className="grud">
           <div className="grud-loaders"></div>
         </div>

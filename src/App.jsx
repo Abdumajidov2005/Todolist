@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   const delData = (id) => {
-    setLoadDelet(true)
+    setLoadDelet(true);
     const requestOptions = {
       method: "DELETE",
       redirect: "follow",
@@ -29,7 +29,7 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         getData()?.then(setData);
-        setLoadDelet(false)
+        setLoadDelet(false);
         return result;
       })
       .catch((error) => {
@@ -55,6 +55,18 @@ function App() {
           setEditId={setEditId}
         />
       </div>
+      <ul class="bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>Frontend Developer</li>
+        <li></li>
+        <li></li>
+        <li>Abdumajidov O'tkirbek</li>
+      </ul>
       <nav>
         <div className="container">
           <div className="logo">
