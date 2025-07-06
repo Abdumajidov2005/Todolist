@@ -11,9 +11,10 @@ function Modal({ setModal, setData, editId, setEditId }) {
   const [isDone, setIsDone] = useState(false);
 
   const createPlan = () => {
+    setLoadingInput(true);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
       sarlavha: title,
       izoh: comment,
@@ -36,6 +37,7 @@ function Modal({ setModal, setData, editId, setEditId }) {
         setIsDone(false);
         setModal(false);
         setEditId(null);
+        setLoadingInput(false);
         return result;
       })
       .catch((error) => {
@@ -45,6 +47,7 @@ function Modal({ setModal, setData, editId, setEditId }) {
   };
 
   const getEditPlan = () => {
+    setLoadInput(true);
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -53,12 +56,16 @@ function Modal({ setModal, setData, editId, setEditId }) {
     fetch(`${baseUrl}/rejalar/${editId}/`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setTitle(result?.sarlavha);
         setComment(result?.izoh);
         setIsDone(result?.bajarildi);
+        setLoadInput(false);
+        return result;
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        return [];
+      });
   };
 
   const getUpdateData = () => {
@@ -96,70 +103,95 @@ function Modal({ setModal, setData, editId, setEditId }) {
   };
 
   useEffect(() => {
-   if(editId !== null){
-     getEditPlan();
-   }
+    if (editId !== null) {
+      getEditPlan();
+    }
   }, [editId]);
+
+  const [loadInput, setLoadInput] = useState(false);
+  const [loadingInput, setLoadingInput] = useState(false);
 
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (editId) {
-            getUpdateData();
-          } else {
-            createPlan();
-          }
-        }}
-        className="modal-info"
-      >
-        <div className="container">
-          <p
-            className="x-mark"
-            onClick={() => {
-              setModal(false);
-              setEditId(null);
-            }}
-          >
-            <FaXmark />
-          </p>
-          <h2>Create Plan</h2>
-          <div className="information">
-            <input
-              type="text"
-              placeholder="Sarlavha"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-            />
-
-            <input
-              type="text"
-              placeholder="Izoh"
-              value={comment}
-              onChange={(e) => {
-                setComment(e.target.value);
-              }}
-            />
-
-            <div className="cheking-plan">
-              <label htmlFor="">Bajarildimi:</label>
-              <input
-                type="checkbox"
-                checked={isDone}
-                onChange={() => {
-                  setIsDone(!isDone);
-                }}
-              />
-            </div>
-            <button>
-              {editId == null ? "submit" : "update"} <IoSendSharp />
-            </button>
-          </div>
+      {loadingInput ? (
+        <div className="grud">
+          <div className="grud-loaders"></div>
         </div>
-      </form>
+      ) : (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (editId) {
+              getUpdateData();
+            } else {
+              createPlan();
+            }
+          }}
+          className="modal-info"
+        >
+          <div className="container">
+            <p
+              className="x-mark"
+              onClick={() => {
+                setModal(false);
+                setEditId(null);
+                setTitle("");
+                setComment("");
+                setIsDone(false);
+              }}
+            >
+              <FaXmark />
+            </p>
+            <h2>{editId ? "Update Plan" : "Create Plan"}</h2>
+            <div className="information">
+              {loadInput ? (
+                <div className="load-input"></div>
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Sarlavha"
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                />
+              )}
+
+              {loadInput ? (
+                <div className="load-input"></div>
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Izoh"
+                  value={comment}
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                  }}
+                />
+              )}
+
+              <div className="cheking-plan">
+                <label htmlFor="">Bajarildimi:</label>
+                {loadInput ? (
+                  <div className="load-inputs"></div>
+                ) : (
+                  <input
+                    type="checkbox"
+                    checked={isDone}
+                    onChange={() => {
+                      setIsDone(!isDone);
+                    }}
+                  />
+                )}
+              </div>
+              <button>
+                {editId == null ? "submit" : "update"}
+                <IoSendSharp />
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
     </>
   );
 }

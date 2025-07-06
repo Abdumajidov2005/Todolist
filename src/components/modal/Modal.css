@@ -7,11 +7,11 @@
   border-radius: 10px;
 }
 
-.modal-info h2{
-    font-size: 30px;
-    color: #0d47a1;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+.modal-info h2 {
+  font-size: 30px;
+  color: #0d47a1;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .modal-info .information {
@@ -58,6 +58,78 @@
   color: #64b5f6;
 }
 
+.load-input {
+  width: 100%;
+  padding: 13px 10px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(
+    65deg,
+    #caf0f8 0%,
+    #ddeefb 25%,
+    #cbebf1 50%,
+    #caf3fb 100%
+  );
+  background-size: 500%;
+  animation: loader 29s linear infinite;
+
+}
+
+.load-inputs{
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    65deg,
+    #caf0f8 0%,
+    #ddeefb 25%,
+    #cbebf1 50%,
+    #caf3fb 100%
+  );
+  background-size: 500%;
+  animation: loader 29s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 300%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+.grud{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: #e3f2fd32;
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+
+.grud .grud-loaders{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 10px solid #caf0f8;
+  border-top: 10px solid #64b5f6;
+  animation: loaders 2s linear infinite;
+}
+
+@keyframes loaders{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
 .cheking-plan {
   display: flex;
   align-items: center;
@@ -76,18 +148,18 @@
   cursor: pointer;
 }
 
-.information button{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 57px;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    cursor: pointer;
-    background-color: #2196f3;
-    border: none;
-    color: #e3f2fd;
-    border-radius: 10px;
-    text-transform: capitalize;
+.information button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 57px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  cursor: pointer;
+  background-color: #2196f3;
+  border: none;
+  color: #e3f2fd;
+  border-radius: 10px;
+  text-transform: capitalize;
 }

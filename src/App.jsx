@@ -10,7 +10,7 @@ import { baseUrl } from "./config";
 function App() {
   const [data, setData] = useState(null);
   const [modal, setModal] = useState(false);
-  const [editId, setEditId] = useState(null)
+  const [editId, setEditId] = useState(null);
 
   useEffect(() => {
     getData()?.then((data) => {
@@ -19,6 +19,7 @@ function App() {
   }, []);
 
   const delData = (id) => {
+    setLoadDelet(true)
     const requestOptions = {
       method: "DELETE",
       redirect: "follow",
@@ -28,6 +29,7 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         getData()?.then(setData);
+        setLoadDelet(false)
         return result;
       })
       .catch((error) => {
@@ -36,10 +38,22 @@ function App() {
       });
   };
 
+  const [loadDelet, setLoadDelet] = useState(false);
+
   return (
     <>
+      {loadDelet && (
+        <div className="delete-loader-backdrop">
+          <div className="delete-loader"></div>
+        </div>
+      )}
       <div className={`modal-oyna ${modal ? "active" : ""}`}>
-        <Modal setModal={setModal} setData={setData} editId={editId} setEditId={setEditId}/>
+        <Modal
+          setModal={setModal}
+          setData={setData}
+          editId={editId}
+          setEditId={setEditId}
+        />
       </div>
       <nav>
         <div className="container">
@@ -75,10 +89,12 @@ function App() {
                   <div className="box-icons">
                     <input checked={item?.bajarildi} type="checkbox" readOnly />
                     <p>
-                      <FaPencil onClick={()=>{
-                        setModal(true)
-                        setEditId(item?.id)
-                      }}/>
+                      <FaPencil
+                        onClick={() => {
+                          setModal(true);
+                          setEditId(item?.id);
+                        }}
+                      />
                     </p>
                     <p>
                       <BsFillTrash3Fill
