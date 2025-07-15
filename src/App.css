@@ -23,7 +23,7 @@ nav {
   top: 0px;
   border-bottom: 1px solid var(--blue-main-write);
   z-index: 9;
-  background-color: var(--white-write);
+  /* background-color: var(--white-write); */
 }
 
 nav h1 {
@@ -32,6 +32,25 @@ nav h1 {
   color: var(--blue-main-write);
   font-family: "Pacifico", cursive;
   cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.imgs-todo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.imgs-todo img {
+  width: 100%;
+  height: 100%;
 }
 
 nav button {
@@ -148,12 +167,73 @@ nav button svg {
   transition: all 0.3s ease;
 }
 
-.gif-load {
-  color: #0d47a1;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 700;
-  margin-top: 100px;
+.card {
+  width: 100%;
+  border: 2px solid #a4bce2;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.animate-titles-borders {
+  width: 84%;
+}
+
+.animate-titles {
+  width: 100%;
+  background-size: 500%;
+  margin-bottom: 10px;
+  padding: 14px 0px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #caf0f8 25%, #ade8f4 50%, #a7e1f5 75%, #aee8f4 100%);
+  animation: animates 3s linear infinite;
+}
+
+.animate-comment {
+  width: 100%;
+  padding: 14px 0px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, #caf0f8 25%, #ade8f4 50%, #a7e1f5 75%, #aee8f4 100%);
+  animation: animates 3s linear infinite;
+}
+
+.animate-date {
+  width: 20%;
+  padding: 10px 0px;
+  border-radius: 4px;
+  background: linear-gradient(45deg, #caf0f8 25%, #ade8f4 50%, #a7e1f5 75%, #aee8f4 100%);
+  animation: animates 3s linear infinite;
+}
+
+@keyframes animates {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 300%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+.animate-icons {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+}
+
+.animate-icons span {
+  width: 23px;
+  height: 23px;
+  background: linear-gradient(45deg, #caf0f8 15%, #ade8f4 50%, #a7e1f5 75%, #aee8f4 100%);
+  animation: animates 3s linear infinite;
 }
 
 .delete-loader-backdrop {

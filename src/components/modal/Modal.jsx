@@ -118,7 +118,9 @@ function Modal({ setModal, setData, editId, setEditId }) {
     <>
       {loadingInput || editUpdata ? (
         <div className="grud">
-          <div className="grud-loaders"></div>
+          <div className="grud-loaders">
+           
+          </div>
         </div>
       ) : (
         <form

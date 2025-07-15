@@ -70,6 +70,9 @@ function App() {
       <nav>
         <div className="container">
           <div className="logo">
+            <div className="imgs-todo">
+              <img src="/imgs/todo.png" alt="" />
+            </div>
             <h1>My Plans</h1>
           </div>
           <div className="icons">
@@ -86,7 +89,56 @@ function App() {
       <div className="hero">
         <div className="container">
           {data === null ? (
-            <div className="gif-load">Yuklanmoqda...</div>
+            <div className="gif-load">
+              <div className="card">
+                <div className="animate-titles-borders">
+                  <div className="animate-titles"></div>
+                  <div className="animate-comment"></div>
+                  <div className="animate-date"></div>
+                </div>
+                <div className="animate-icons">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div className="card">
+                <div className="animate-titles-borders">
+                  <div className="animate-titles"></div>
+                  <div className="animate-comment"></div>
+                  <div className="animate-date"></div>
+                </div>
+                <div className="animate-icons">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+               <div className="card">
+                <div className="animate-titles-borders">
+                  <div className="animate-titles"></div>
+                  <div className="animate-comment"></div>
+                  <div className="animate-date"></div>
+                </div>
+                <div className="animate-icons">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+               <div className="card">
+                <div className="animate-titles-borders">
+                  <div className="animate-titles"></div>
+                  <div className="animate-comment"></div>
+                  <div className="animate-date"></div>
+                </div>
+                <div className="animate-icons">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
           ) : !data.length ? (
             <div className="gif-load">Ma'lumot topilmadi.</div>
           ) : (
